@@ -1,0 +1,35 @@
+name: yolo
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  yolo:
+    name: yolo
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: yolo
+        run: |
+          docker run --privileged --rm --entrypoint bash -v $PWD:/work -w /work ghcr.io/wolfi-dev/sdk:latest -c \
+           'melange keygen local-melange.rsa && make all MELANGE_DIR="$(dirname $(which melange))"'
+      - uses: actions/upload-artifact@v3
+        with:
+          name: packages
+          path: packages
+      - uses: actions/upload-artifact@v3
+        with:
+          name: local-melange.rsa
+          path: local-melange.rsa
+      - uses: actions/upload-artifact@v3
+        with:
+          name: local-melange.rsa.pub
+          path: local-melange.rsa.pub
