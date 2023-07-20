@@ -6,7 +6,7 @@ They are meant to be used standalone (without Alpine) to bootstrap stage
 
 The [package repository][repo] is automatically built using GitHub Actions.
 
-   [repo]: https://packages.wolfi.dev/bootstrap/stage1
+   [repo]: https://storage.googleapis.com/disaster-exercise-wolfi-production-registry-destination/bootstrap/stage1
 
 ## Building the stage2 package set yourself
 
